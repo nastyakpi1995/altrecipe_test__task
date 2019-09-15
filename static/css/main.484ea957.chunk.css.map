@@ -1,0 +1,1 @@
+{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,KACE,YACF,CAEA,cACE,oBACF","file":"main.484ea957.chunk.css","sourcesContent":[".App {\n  display: flex;\n}\n\n.Phones__page {\n  text-decoration: none;\n}"]}
