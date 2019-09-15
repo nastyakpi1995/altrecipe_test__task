@@ -14,6 +14,7 @@ const prepared = users.map(user => user.data.map(us => {
   return (
     {
       ...us,
+      location: location.map(u => u.data.find(u => u.id === us.id)),
       address: location.map(u => u.data.find(u => u.id === us.id).address),
     })}
 ));
@@ -50,6 +51,7 @@ const prepared = users.map(user => user.data.map(us => {
     }
 
     render() {
+
       const {
         shownForm,
         visiblePeople,
@@ -82,14 +84,19 @@ const prepared = users.map(user => user.data.map(us => {
         </MenuList>
       </Paper>
           <Switch>
-          <Route
-            path="/location"
-            exact
-            render={({ match }) => (
-              <PeoplePlace
+            {visiblePeople.map(people => (
+                <Route
+                path="/location"
+                exact
+                render={({ match }) => (
+                  <PeoplePlace
+                  phoneId={match.params}
+                  people={people}
+                  />
+                )}
               />
-            )}
-          />
+            ))}
+        
           <Route
             path="/people"
             render={() => (
@@ -97,7 +104,6 @@ const prepared = users.map(user => user.data.map(us => {
               people={visiblePeople}
               handleDelete={this.handleDelete}
               shownForm={shownForm}
-              visiblePeople={visiblePeople}
               />
             )}
           />
