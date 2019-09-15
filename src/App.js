@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
-// import {getUser} from './getApi';
+import { Route, NavLink, Switch } from 'react-router-dom';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
 import users from './user_lists';
+import Paper from '@material-ui/core/Paper';
+import PeoplePlace from './PeoplePlace';
 import location from './location';
 import PeopleTable from './PeopleTable';
-import NewPerson from './NewPerson';
+import NotFoundPage from './NotFoundPage';
 
 const prepared = users.map(user => user.data.map(us => {
   return (
@@ -33,7 +37,7 @@ const prepared = users.map(user => user.data.map(us => {
         shownForm: true,
       });
     };
-  
+
     closeForm = (event) => {
       event.preventDefault();
       this.setState({
@@ -43,57 +47,69 @@ const prepared = users.map(user => user.data.map(us => {
 
     handleDelete = (id) => {
 
-      }
-  
-    addNewPerson = (newPerson) => {
-      newPerson = {
-        ...newPerson,
-        id: this.state.visiblePeople.length + 1,
-      };
-      this.setState(prevState => ({
-        visiblePeople: [...prevState.visiblePeople, newPerson],
-        shownForm: false,
-      }));
     }
-  
+
     render() {
       const {
         shownForm,
         visiblePeople,
       } = this.state;
-      console.log(visiblePeople)
+      console.log(visiblePeople);
 
       return (
         <div className="App">
-          <button
-            type="submit"
-            className="btn-new-person"
-            onClick={this.showForm}
-          >
-            Add a new person
-          </button>
-          {shownForm
-          && (
-            <NewPerson
-              onSubmit={this.addNewPerson}
-              closeForm={this.closeForm}
-            />
-          )}
-          <h1>
-            People table&nbsp;
-            (
-            {visiblePeople.map(a => a.length)}
-            &nbsp;people)
-          </h1>
-       
-          <PeopleTable
-            people={visiblePeople}
-            handleDelete={this.handleDelete}
+           <Paper
+           >
+        <MenuList>
+          <MenuItem>
+          <NavLink
+              to="/people"
+              className="Phones__page"
+              activeClassName="phoneClassActive"
+            >
+        people
+            </NavLink>
+          </MenuItem>
+          <MenuItem>
+          <NavLink
+              to="/location"
+              className="Phones__page page__basket"
+              activeClassName="phoneClassActive"
+            >
+                <div className="App__basket__title">location</div>
+            </NavLink>
+          </MenuItem>
+        </MenuList>
+      </Paper>
+          <Switch>
+          <Route
+            path="/location"
+            exact
+            render={({ match }) => (
+              <PeoplePlace
+              />
+            )}
           />
+          <Route
+            path="/people"
+            render={() => (
+              <PeopleTable
+              people={visiblePeople}
+              handleDelete={this.handleDelete}
+              shownForm={shownForm}
+              visiblePeople={visiblePeople}
+              />
+            )}
+          />
+          <Route
+            path="*"
+            component={NotFoundPage}
+          />
+        </Switch>
         </div>
       );
     }
   }
-  
+
 
 export default App;

@@ -2,50 +2,121 @@ import React from 'react';
 import './App.css';
 import PropTypes from 'prop-types';
 
+import MaterialTable from 'material-table';
 
-const Person = ({ person, handleDelete }) => {
-    console.log( person);
-  return (
-      person.map(pers => (
-        <tr className="table">
-        <td>{pers.id}</td>
-        <td className="table">{pers.name}</td>
-        <td className="table"> {pers.job_title}</td>
-        <td className="table"> {pers.birth_date}</td> 
-        <td className="table"> {pers.address}</td> 
-        <button
-          type="button"
-          onClick={() => handleDelete(pers.id)}
-          className="basketPage__table-quantity-plus"
-        >
-          remove
-        </button>
-      </tr>
-      ))
-   
-  );
-};
+class Person extends React.Component {
+  state = {
+    columns: [
+      { title: 'Name', field: 'name' },
+      { title: 'Surname', field: 'surname' },
+      { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
+      // {
+      //   title: 'Birth Place',
+      //   field: 'birthCity',
+      //   lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+      // },
+    ]
+  } 
 
-Person.propTypes = {
-  person: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    sex: PropTypes.string.isRequired,
-    born: PropTypes.number.isRequired,
-    died: PropTypes.number.isRequired,
-    age: PropTypes.number.isRequired,
-    century: PropTypes.number.isRequired,
-    mother: PropTypes.string,
-    father: PropTypes.string,
-    children: PropTypes.string,
-  }).isRequired,
-  selectedPerson: PropTypes.number,
-  markByClick: PropTypes.func,
-};
+  newData = (newData) => {
+    new Promise(resolve => {
+      setTimeout(() => {
+        resolve();
+        const data = [...this.state.columns.data];
+        data.push(newData);
+        // setState({ ...state, data });
+      }, 600);
+    })
+  }
 
-Person.defaultProps = {
-  selectedPerson: null,
-  markByClick: () => {},
-};
+  render() {
+    const { columns } = this.state;
+    const { person } = this.props;
+    console.log(person)
+
+    return (
+      <div className="shown-form">
+
+         <MaterialTable
+  title="People"
+  columns={[...columns,  {
+    title: 'location',
+    field: 'birthCity',
+    lookup: person.map((pers) =>  ({id: pers.birth_date}) ),
+  }]
+}
+    data={person.map(pers => (
+      {name: pers.name, surname: pers.name, birthYear: pers.birth_date, birthCity: 63 }))}
+      editable={{
+        onRowAdd: this.newData,
+        onRowUpdate: '2',
+        onRowDelete: '3',
+      }}
+/>
+      </div>
+    );
+  }
+}
+
+// const Person = ({ person, handleDelete }) => {
+//   const [state, setState] = React.useState({
+//     columns: [
+//       { title: 'Name', field: 'name' },
+//       { title: 'Surname', field: 'surname' },
+//       { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
+//       {
+//         title: 'Birth Place',
+//         field: 'birthCity',
+//         lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+//       },
+//     ],
+//     data: [
+//       { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
+//       {
+//         name: 'Zerya Betül',
+//         surname: 'Baran',
+//         birthYear: 2017,
+//         birthCity: 34,
+//       },
+//     ],
+//   });
+
+//   return (
+//     <MaterialTable
+//       title="Editable Example"
+//       columns={state.columns}
+//       data={state.data}
+//       editable={{
+//         onRowAdd: newData =>
+//           new Promise(resolve => {
+//             setTimeout(() => {
+//               resolve();
+//               const data = [...state.data];
+//               data.push(newData);
+//               setState({ ...state, data });
+//             }, 600);
+//           }),
+//         onRowUpdate: (newData, oldData) =>
+//           new Promise(resolve => {
+//             setTimeout(() => {
+//               resolve();
+//               const data = [...state.data];
+//               data[data.indexOf(oldData)] = newData;
+//               setState({ ...state, data });
+//             }, 600);
+//           }),
+//         onRowDelete: oldData =>
+//           new Promise(resolve => {
+//             setTimeout(() => {
+//               resolve();
+//               const data = [...state.data];
+//               data.splice(data.indexOf(oldData), 1);
+//               setState({ ...state, data });
+//             }, 600);
+//           }),
+//       }}
+//     />
+//   );
+// }
 
 export default Person;
