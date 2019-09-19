@@ -15,7 +15,11 @@ import { getUser, getLocation } from './getApi';
       location: [],
     };
 
-    async componentDidMount() {
+    componentDidMount() {
+      this.refreshPeople();
+    }
+
+    async refreshPeople() {
       const users = await getUser();
       const location = await getLocation();
       this.setState({
@@ -37,12 +41,7 @@ import { getUser, getLocation } from './getApi';
       });
     };
 
-    handleDelete = (id) => {
-
-    }
-
     render() {
-
       const {
         shownForm,
         visiblePeople,

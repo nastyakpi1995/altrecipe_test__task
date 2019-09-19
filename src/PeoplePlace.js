@@ -13,11 +13,9 @@ class PeoplePlace extends React.Component {
     this.setState({
       setValue: value,
     })
-    
   }
 
   render() {
- 
     const { location } = this.props;
     console.log(location)
     const suggestions = location.map(suggestion => ({
