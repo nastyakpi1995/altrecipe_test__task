@@ -3,35 +3,26 @@ import './App.css';
 import { Route, NavLink, Switch } from 'react-router-dom';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import users from './user_lists';
 import Paper from '@material-ui/core/Paper';
 import PeoplePlace from './PeoplePlace';
-import location from './location';
 import PeopleTable from './PeopleTable';
 import NotFoundPage from './NotFoundPage';
-
-const prepared = users.map(user => user.data.map(us => {
-  return (
-    {
-      ...us,
-      location: location.map(u => u.data.find(u => u.id === us.id)),
-      address: location.map(u => u.data.find(u => u.id === us.id).address),
-    })}
-));
+import { getUser, getLocation } from './getApi';
 
   class App extends React.Component {
     state = {
-      visiblePeople: prepared,
-      shownForm: false,
+      visiblePeople: [],
+      location: [],
     };
 
-  //   async componentDidMount() {
-  //     const users = await getUser();
-  //     console.log(users)
-  //     this.setState({
-  //       visiblePeople: users,
-  //     })
-  // }
+    async componentDidMount() {
+      const users = await getUser();
+      const location = await getLocation();
+      this.setState({
+        visiblePeople: users.data,
+        location: location.data,
+      })
+  }
 
     showForm = () => {
       this.setState({
@@ -55,9 +46,8 @@ const prepared = users.map(user => user.data.map(us => {
       const {
         shownForm,
         visiblePeople,
+        location,
       } = this.state;
-      console.log(visiblePeople);
-
       return (
         <div className="App">
            <Paper
@@ -84,19 +74,17 @@ const prepared = users.map(user => user.data.map(us => {
         </MenuList>
       </Paper>
           <Switch>
-            {visiblePeople.map(people => (
-                <Route
+            <Route
                 path="/location"
                 exact
                 render={({ match }) => (
                   <PeoplePlace
                   phoneId={match.params}
-                  people={people}
+                  location={location}
+                  people={visiblePeople}
                   />
                 )}
               />
-            ))}
-        
           <Route
             path="/people"
             render={() => (
@@ -104,6 +92,7 @@ const prepared = users.map(user => user.data.map(us => {
               people={visiblePeople}
               handleDelete={this.handleDelete}
               shownForm={shownForm}
+              location={location}
               />
             )}
           />

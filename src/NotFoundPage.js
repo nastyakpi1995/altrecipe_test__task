@@ -7,7 +7,7 @@ const NotFoundPage = () => (
     <span>
       <NavLink
         className="navlink"
-        to="/"
+        to="/people"
         exact
       >
         here is Home

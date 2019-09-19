@@ -1,40 +1,113 @@
 import React from 'react';
-import MaterialTable from 'material-table';
+import Select from 'react-select';
+import NoSsr from '@material-ui/core/NoSsr';
+
 
 class PeoplePlace extends React.Component {
   state = {
-    columns: [
-      { title: 'Name', field: 'name' },
-      { title: 'Job', field: 'job' },
-      { title: 'Birth Year', field: 'birthYear' },
-    ]
-  } 
+    value: null,
+    setValue: null,
+  };
+
+  handleChangeMulti = (value) => {
+    this.setState({
+      setValue: value,
+    })
+    
+  }
 
   render() {
-    const { people } = this.props;
-    const { columns } = this.state;
-    console.log(people);
+ 
+    const { location } = this.props;
+    console.log(location)
+    const suggestions = location.map(suggestion => ({
+      value: suggestion.address,
+      label: suggestion.address,
+    }));
     
-    const data = people.forEach(element => (
-      console.log( element.location)
-      ))
-    console.log(data)
-
     return (
-      <div className="shown-form">
-
-         <MaterialTable
-  title="People"
-  columns={columns}
-    data={[{name: 'pers.address', job: 'pers.city'}] 
-      // people.forEach(element => {
-      // console.log(element.location.map(name => name.address))
-      // element.location.map(pers => ({name: 'pers.address', job: 'pers.city' }))})
-    }
-/>
+      <div>
+        <NoSsr>
+          <Select
+            inputId="react-select-multiple"
+            TextFieldProps={{
+              label: 'Countries',
+              InputLabelProps: {
+                htmlFor: 'react-select-multiple',
+              },
+            }}
+            placeholder="Select multiple countries"
+            options={suggestions}
+            value={this.state.setValue}
+            onChange={this.handleChangeMulti}
+          />
+        </NoSsr>
       </div>
     );
   }
+  
 }
 
+
+// class PeoplePlace extends React.Component {
+//   state = {
+//     input: {
+//       display: 'flex',
+//       padding: 0,
+//       height: 'auto',
+//     },
+//     setMulti: null,
+//   }
+
+//   handleChangeMulti = (value) => {
+//     this.state.setMulti(value);
+//   }
+
+//   // selectStyles = {
+//   //   input: base => ({
+//   //     ...base,
+//   //     color: blue,
+//   //     '& input': {
+//   //       font: 'inherit',
+//   //     },
+//   //   }),
+//   // };
+
+//   handleChange = (event) => {
+//       this.setState(oldValues => ({
+//         ...oldValues,
+//         [event.target.name]: event.target.value,
+//         text: event.target.value,
+//       }));
+//     }
+
+//   render() {
+//     const { location } = this.props;
+//     console.log(location)
+
+//     return (
+//       <div className="shown-form">
+//         <NoSsr>
+//            <Select
+//           styles={this.selectStyles}
+//           inputId="react-select-multiple"
+//           TextFieldProps={{
+//             label: 'Countries',
+//             InputLabelProps: {
+//               htmlFor: 'react-select-multiple',
+//               shrink: true,
+//             },
+//           }}
+//           placeholder="Select multiple countries"
+//           options={suggestions}
+//           // components={components}
+//           value={this.state.multi}
+//           onChange={this.handleChangeMulti}
+//           isMulti
+//         />
+//       </NoSsr>
+//       </div>
+//     );
+//   }
+// }
 export default PeoplePlace;
