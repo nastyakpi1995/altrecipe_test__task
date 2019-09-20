@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MaterialTable from 'material-table';
 import { removePerson, getcreate, updatePerson } from './getApi';
+import { NavLink } from 'react-router-dom';
 import './App.css';
 
 
@@ -32,7 +33,10 @@ class PeopleTable extends React.Component {
   render() {
     const { people } = this.props;
     const {columns} = this.state;
-    console.log(people)
+    const peoplePrepeared = people.map(a => ({
+      ...a,
+      name: <NavLink to={`/location${a.id}`}>{a.name}</NavLink>, 
+    }))
     
     return (
       <div className="shown-form">
@@ -40,7 +44,7 @@ class PeopleTable extends React.Component {
       <MaterialTable
         title="People"
         columns={columns}
-        data={people}
+        data={peoplePrepeared}
           editable={{
             onRowAdd: this.addNewData,
             onRowUpdate: this.update,

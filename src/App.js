@@ -63,7 +63,7 @@ import { getUser, getLocation } from './getApi';
           </MenuItem>
           <MenuItem>
           <NavLink
-              to="/location"
+              to="/location:personLocal"
               className="Phones__page page__basket"
               activeClassName="phoneClassActive"
             >
@@ -74,13 +74,13 @@ import { getUser, getLocation } from './getApi';
       </Paper>
           <Switch>
             <Route
-                path="/location"
+                path="/location:personLocal?"
                 exact
                 render={({ match }) => (
                   <PeoplePlace
-                  phoneId={match.params}
-                  location={location}
-                  people={visiblePeople}
+                    personLocal={match.params.personLocal}
+                    location={location}
+                    people={visiblePeople}
                   />
                 )}
               />

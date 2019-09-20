@@ -1,43 +1,76 @@
 import React from 'react';
 import Select from 'react-select';
 import NoSsr from '@material-ui/core/NoSsr';
-
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 class PeoplePlace extends React.Component {
   state = {
-    value: null,
-    setValue: null,
-  };
+    value: [],
+    setValue: [],
+  }
 
-  handleChangeMulti = (value) => {
+  handleChangeValue = (value) => {
     this.setState({
       setValue: value,
+      value,
     })
   }
 
   render() {
-    const { location } = this.props;
-    console.log(location)
+    const { location, people, personLocal } = this.props;
+    const { setValue,value } = this.state;
     const suggestions = location.map(suggestion => ({
-      value: suggestion.address,
+      value: suggestion.id,
       label: suggestion.address,
     }));
-    
+    const peopelePrepared = people.filter(person => person.id === +personLocal);
+    const peopleWithLocal = people.filter(person => person.id === +value.value);
+
     return (
       <div>
+        { personLocal 
+        ?  peopelePrepared.map(person => (
+          <Card>
+           <CardContent>
+           <Typography color="textSecondary" gutterBottom>
+          {person.name}
+        </Typography>
+           {person.job_title}
+           </CardContent>
+          </Card>
+          )
+        )
+         : ''
+        } 
+         { personLocal && Number.isInteger(+value.value)
+        ?  peopleWithLocal.map(person => (
+          <Card>
+           <CardContent>
+           <Typography color="textSecondary" gutterBottom>
+          {person.name}
+        </Typography>
+           {person.job_title}
+           </CardContent>
+          </Card>
+          )
+        )
+         : ''
+        } 
         <NoSsr>
           <Select
-            inputId="react-select-multiple"
+            inputId="react-select-value"
             TextFieldProps={{
               label: 'Countries',
               InputLabelProps: {
-                htmlFor: 'react-select-multiple',
+                htmlFor: 'react-select-value',
               },
             }}
-            placeholder="Select multiple countries"
+            placeholder="check locale please"
             options={suggestions}
-            value={this.state.setValue}
-            onChange={this.handleChangeMulti}
+            value={setValue}
+            onChange={this.handleChangeValue}
           />
         </NoSsr>
       </div>
@@ -46,66 +79,4 @@ class PeoplePlace extends React.Component {
   
 }
 
-
-// class PeoplePlace extends React.Component {
-//   state = {
-//     input: {
-//       display: 'flex',
-//       padding: 0,
-//       height: 'auto',
-//     },
-//     setMulti: null,
-//   }
-
-//   handleChangeMulti = (value) => {
-//     this.state.setMulti(value);
-//   }
-
-//   // selectStyles = {
-//   //   input: base => ({
-//   //     ...base,
-//   //     color: blue,
-//   //     '& input': {
-//   //       font: 'inherit',
-//   //     },
-//   //   }),
-//   // };
-
-//   handleChange = (event) => {
-//       this.setState(oldValues => ({
-//         ...oldValues,
-//         [event.target.name]: event.target.value,
-//         text: event.target.value,
-//       }));
-//     }
-
-//   render() {
-//     const { location } = this.props;
-//     console.log(location)
-
-//     return (
-//       <div className="shown-form">
-//         <NoSsr>
-//            <Select
-//           styles={this.selectStyles}
-//           inputId="react-select-multiple"
-//           TextFieldProps={{
-//             label: 'Countries',
-//             InputLabelProps: {
-//               htmlFor: 'react-select-multiple',
-//               shrink: true,
-//             },
-//           }}
-//           placeholder="Select multiple countries"
-//           options={suggestions}
-//           // components={components}
-//           value={this.state.multi}
-//           onChange={this.handleChangeMulti}
-//           isMulti
-//         />
-//       </NoSsr>
-//       </div>
-//     );
-//   }
-// }
 export default PeoplePlace;
