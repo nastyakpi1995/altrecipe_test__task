@@ -7,47 +7,9 @@ import Paper from '@material-ui/core/Paper';
 import PeoplePlace from './PeoplePlace';
 import PeopleTable from './PeopleTable';
 import NotFoundPage from './NotFoundPage';
-import { getUser, getLocation } from './getApi';
+// import { getUser, getLocation } from './getApi';
 
-  class App extends React.Component {
-    state = {
-      visiblePeople: [],
-      location: [],
-    };
-
-    componentDidMount() {
-      this.refreshPeople();
-    }
-
-    async refreshPeople() {
-      const users = await getUser();
-      const location = await getLocation();
-      this.setState({
-        visiblePeople: users.data,
-        location: location.data,
-      })
-  }
-
-    showForm = () => {
-      this.setState({
-        shownForm: true,
-      });
-    };
-
-    closeForm = (event) => {
-      event.preventDefault();
-      this.setState({
-        shownForm: false,
-      });
-    };
-
-    render() {
-      const {
-        shownForm,
-        visiblePeople,
-        location,
-      } = this.state;
-      return (
+  const App = () => (
         <div className="App">
            <Paper
            >
@@ -79,20 +41,13 @@ import { getUser, getLocation } from './getApi';
                 render={({ match }) => (
                   <PeoplePlace
                     personLocal={match.params.personLocal}
-                    location={location}
-                    people={visiblePeople}
                   />
                 )}
               />
           <Route
             path="/people"
             render={() => (
-              <PeopleTable
-              people={visiblePeople}
-              handleDelete={this.handleDelete}
-              shownForm={shownForm}
-              location={location}
-              />
+              <PeopleTable/>
             )}
           />
           <Route
@@ -102,8 +57,6 @@ import { getUser, getLocation } from './getApi';
         </Switch>
         </div>
       );
-    }
-  }
 
 
 export default App;

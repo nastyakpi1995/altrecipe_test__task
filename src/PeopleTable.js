@@ -1,63 +1,53 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import MaterialTable from 'material-table';
-import { removePerson, getcreate, updatePerson } from './getApi';
-import { NavLink } from 'react-router-dom';
-import './App.css';
+import people from './people';
 
-
-
-class PeopleTable extends React.Component {
-  state = {
-    data: [],
+function PeopleTable() {
+  const [state, setState] = React.useState({
     columns: [
       { title: 'Name', field: 'name' },
-      { title: 'Job', field: 'job_title' },
-      { title: 'Birth Year', field:'birth_date', type: 'numeric' },
-    ]
-  }
+      { title: 'Surname', field: 'job_title' },
+      { title: 'Birth Year', field: 'birth_date', type: 'numeric' },
+    ],
+    data: people,
+  });
 
-  removePerson = (oldData) => {
-    removePerson(oldData.tableData.id + 1);
-  }
-
-  addNewData = (newData) => {
-    getcreate(newData);
-  };
-
-  update = async (newData) => {
-    updatePerson(newData, newData.id)
-  }
-      
-
-  render() {
-    const { people } = this.props;
-    const {columns} = this.state;
-    const peoplePrepeared = people.map(a => ({
-      ...a,
-      name: <NavLink to={`/location${a.id}`}>{a.name}</NavLink>, 
-    }))
-    
-    return (
-      <div className="shown-form">
-
-      <MaterialTable
-        title="People"
-        columns={columns}
-        data={peoplePrepeared}
-          editable={{
-            onRowAdd: this.addNewData,
-            onRowUpdate: this.update,
-            onRowDelete: this.removePerson,
-          }}
-        />
-   </div>
-    );
-  }
+  return (
+    <MaterialTable
+      title="Editable Example"
+      columns={state.columns}
+      data={state.data}
+      editable={{
+        onRowAdd: newData =>
+          new Promise(resolve => {
+            setTimeout(() => {
+              resolve();
+              const data = [...state.data];
+              data.push(newData);
+              setState({ ...state, data });
+            }, 600);
+          }),
+        onRowUpdate: (newData, oldData) =>
+          new Promise(resolve => {
+            setTimeout(() => {
+              resolve();
+              const data = [...state.data];
+              data[data.indexOf(oldData)] = newData;
+              setState({ ...state, data });
+            }, 600);
+          }),
+        onRowDelete: oldData =>
+          new Promise(resolve => {
+            setTimeout(() => {
+              resolve();
+              const data = [...state.data];
+              data.splice(data.indexOf(oldData), 1);
+              setState({ ...state, data });
+            }, 600);
+          }),
+      }}
+    />
+  );
 }
-
-PeopleTable.propTypes = {
-  people: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
 
 export default PeopleTable;

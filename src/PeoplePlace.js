@@ -4,6 +4,7 @@ import NoSsr from '@material-ui/core/NoSsr';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
 
 class PeoplePlace extends React.Component {
   state = {
@@ -44,7 +45,7 @@ class PeoplePlace extends React.Component {
         )
          : ''
         } 
-         { personLocal && Number.isInteger(+value.value)
+        { personLocal && Number.isInteger(+value.value)
         ?  peopleWithLocal.map(person => (
           <Card>
            <CardContent>
@@ -76,7 +77,18 @@ class PeoplePlace extends React.Component {
       </div>
     );
   }
-  
 }
 
-export default PeoplePlace;
+const mapStateToProps = state => ({
+  location: state.location,
+  people: state.people,
+});
+
+const mapDispatchToProps = dispatch => ({
+  // loadTodos: () => dispatch(loadTodos()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PeoplePlace);
