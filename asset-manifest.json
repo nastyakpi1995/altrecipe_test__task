@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/altrecipe_test__task/static/css/main.8e74805e.chunk.css",
+    "main.css": "/altrecipe_test__task/static/css/main.bafacfbe.chunk.css",
     "main.js": "/altrecipe_test__task/static/js/main.f0a3ea04.chunk.js",
     "main.js.map": "/altrecipe_test__task/static/js/main.f0a3ea04.chunk.js.map",
     "runtime~main.js": "/altrecipe_test__task/static/js/runtime~main.0055bb84.js",
@@ -8,8 +8,8 @@
     "static/js/2.0ff06600.chunk.js": "/altrecipe_test__task/static/js/2.0ff06600.chunk.js",
     "static/js/2.0ff06600.chunk.js.map": "/altrecipe_test__task/static/js/2.0ff06600.chunk.js.map",
     "index.html": "/altrecipe_test__task/index.html",
-    "precache-manifest.d1a262872678cda4c7023d587a7c0418.js": "/altrecipe_test__task/precache-manifest.d1a262872678cda4c7023d587a7c0418.js",
+    "precache-manifest.f0eebafb1be15608598a96c8111253f2.js": "/altrecipe_test__task/precache-manifest.f0eebafb1be15608598a96c8111253f2.js",
     "service-worker.js": "/altrecipe_test__task/service-worker.js",
-    "static/css/main.8e74805e.chunk.css.map": "/altrecipe_test__task/static/css/main.8e74805e.chunk.css.map"
+    "static/css/main.bafacfbe.chunk.css.map": "/altrecipe_test__task/static/css/main.bafacfbe.chunk.css.map"
   }
 }
