@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ed924e4c47be820872794865a1946e51",
+    "revision": "6458e4d7fe6c0f7266768121fd295b3e",
     "url": "/altrecipe_test__task/index.html"
   },
   {
-    "revision": "bc4a2b8604c7f6f031fb",
+    "revision": "895e37ce8c2cebdecfaa",
     "url": "/altrecipe_test__task/static/css/main.177f1cef.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/altrecipe_test__task/static/js/2.0ff06600.chunk.js"
   },
   {
-    "revision": "bc4a2b8604c7f6f031fb",
-    "url": "/altrecipe_test__task/static/js/main.0df97189.chunk.js"
+    "revision": "895e37ce8c2cebdecfaa",
+    "url": "/altrecipe_test__task/static/js/main.b304cd2d.chunk.js"
   },
   {
     "revision": "b462acfe45f0f09387ab",
