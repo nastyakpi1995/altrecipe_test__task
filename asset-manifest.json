@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/altrecipe_test__task/static/css/main.bafacfbe.chunk.css",
-    "main.js": "/altrecipe_test__task/static/js/main.1fbe403d.chunk.js",
-    "main.js.map": "/altrecipe_test__task/static/js/main.1fbe403d.chunk.js.map",
+    "main.js": "/altrecipe_test__task/static/js/main.225b56d9.chunk.js",
+    "main.js.map": "/altrecipe_test__task/static/js/main.225b56d9.chunk.js.map",
     "runtime~main.js": "/altrecipe_test__task/static/js/runtime~main.0055bb84.js",
     "runtime~main.js.map": "/altrecipe_test__task/static/js/runtime~main.0055bb84.js.map",
-    "static/js/2.b3462805.chunk.js": "/altrecipe_test__task/static/js/2.b3462805.chunk.js",
-    "static/js/2.b3462805.chunk.js.map": "/altrecipe_test__task/static/js/2.b3462805.chunk.js.map",
+    "static/js/2.ef962ac2.chunk.js": "/altrecipe_test__task/static/js/2.ef962ac2.chunk.js",
+    "static/js/2.ef962ac2.chunk.js.map": "/altrecipe_test__task/static/js/2.ef962ac2.chunk.js.map",
     "index.html": "/altrecipe_test__task/index.html",
-    "precache-manifest.70bc95d582f4582a1215555ce61d9a84.js": "/altrecipe_test__task/precache-manifest.70bc95d582f4582a1215555ce61d9a84.js",
+    "precache-manifest.9ad61b1965704acef1e853f25fd2224e.js": "/altrecipe_test__task/precache-manifest.9ad61b1965704acef1e853f25fd2224e.js",
     "service-worker.js": "/altrecipe_test__task/service-worker.js",
     "static/css/main.bafacfbe.chunk.css.map": "/altrecipe_test__task/static/css/main.bafacfbe.chunk.css.map"
   }
