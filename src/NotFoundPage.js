@@ -3,15 +3,17 @@ import { NavLink } from 'react-router-dom';
 
 const NotFoundPage = () => (
   <div>
-    <h1>Page not found</h1>
-    <span>
-      <NavLink
-        className="navlink"
+    <h4 title="j" className="navlink">Page not found <NavLink
+        
+        className="notfound"
         to="/people"
         exact
+        title="here you "
       >
-        here is Home
-      </NavLink>
+      please go here
+      </NavLink></h4>
+    <span>
+     
     </span>
   </div>
 );

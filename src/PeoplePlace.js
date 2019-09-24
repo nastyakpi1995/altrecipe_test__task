@@ -33,7 +33,7 @@ class PeoplePlace extends React.Component {
       <div>
         { personLocal 
         ?  peopelePrepared.map(person => (
-          <Card>
+          <Card key={person.id}>
            <CardContent>
            <Typography color="textSecondary" gutterBottom>
           {person.name}
@@ -47,7 +47,7 @@ class PeoplePlace extends React.Component {
         } 
         { personLocal && Number.isInteger(+value.value)
         ?  peopleWithLocal.map(person => (
-          <Card>
+          <Card  key={person.id}>
            <CardContent>
            <Typography color="textSecondary" gutterBottom>
           {person.name}

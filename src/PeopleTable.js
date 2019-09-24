@@ -1,20 +1,27 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 import people from './people';
+import { NavLink } from 'react-router-dom';
 
-function PeopleTable() {
+const peoplePrepeared = people.map(a => ({
+  ...a,
+  name: <NavLink to={`/location${a.id}`}>{a.name}</NavLink>, 
+}))
+
+
+export default function PeopleTable() {
   const [state, setState] = React.useState({
     columns: [
       { title: 'Name', field: 'name' },
-      { title: 'Surname', field: 'job_title' },
+      { title: 'Job', field: 'job_title' },
       { title: 'Birth Year', field: 'birth_date', type: 'numeric' },
     ],
-    data: people,
+    data: peoplePrepeared,
   });
 
   return (
     <MaterialTable
-      title="Editable Example"
+      title="People"
       columns={state.columns}
       data={state.data}
       editable={{
@@ -49,5 +56,3 @@ function PeopleTable() {
     />
   );
 }
-
-export default PeopleTable;

@@ -11,14 +11,13 @@ import NotFoundPage from './NotFoundPage';
 
   const App = () => (
         <div className="App">
-           <Paper
-           >
+           <Paper>
         <MenuList>
           <MenuItem>
           <NavLink
               to="/people"
-              className="Phones__page"
-              activeClassName="phoneClassActive"
+              className="page__people"
+              activeClassName="ClassActive"
             >
         people
             </NavLink>
@@ -26,8 +25,8 @@ import NotFoundPage from './NotFoundPage';
           <MenuItem>
           <NavLink
               to="/location:personLocal"
-              className="Phones__page page__basket"
-              activeClassName="phoneClassActive"
+              className="page__people "
+              activeClassName="ClassActive"
             >
                 <div className="App__basket__title">location</div>
             </NavLink>

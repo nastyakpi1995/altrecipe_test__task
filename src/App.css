@@ -7,10 +7,24 @@
   text-decoration: none;
 }
 
-.Phones__page {
+.page__people {
   text-decoration: none;
 }
 
 .css-2b097c-container { 
   width: 800px;
+}
+
+.notfound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  opacity: 100%;
+  width: 420px;
+  position: relative;
+}
+
+ClassActive {
+  border: 1px solid black;
 }
