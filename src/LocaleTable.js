@@ -1,37 +1,20 @@
 import React from 'react';
 import MaterialTable from 'material-table';
-import people from './people';
 import location from './location';
-import { NavLink } from 'react-router-dom';
-
-const peoplePrepeared = people.map(a => ({
-  ...a,
-  name: <NavLink to={`/location${a.id}`}>{a.name}</NavLink>,
-  location: location.find(loc => (loc.id === a.id)).address, 
-  city: location.find(loc => (loc.id === a.id)).address,
-}))
-
 
 export default function PeopleTable() {
   const [state, setState] = React.useState({
     columns: [
-      { title: 'Name', field: 'name' },
-      { title: 'Job', field: 'job_title' },
-      { title: 'Birth Year', field: 'birth_date', type: 'numeric' },
-      { title: 'Location', field: 'location' },
-      { title: 'Location', field: 'city' },
-      {
-        title: 'Changed Location',
-        field: 'location',
-        lookup: peoplePrepeared.map(n => n.location),
-      },
+      { title: 'City', field: 'city' },
+      { title: 'Address', field: 'address' },
+      { title: 'Index', field: 'index', type: 'numeric' },
     ],
-    data: peoplePrepeared,
+    data: location,
   });
-console.log(peoplePrepeared)
+
   return (
     <MaterialTable
-      title="People"
+      title="Location"
       columns={state.columns}
       data={state.data}
       editable={{

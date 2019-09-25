@@ -5,13 +5,19 @@ import people from './people';
 import location from './location';
 
 
-const DELETED_PERSON = 'DELETED_PERSON';
+const SELECT_LOCATION = 'SELECT_LOCATION';
 
-export const deleted_person = value => ({ type: DELETED_PERSON, value: value });
+export const selectLocation = value => ({ type: SELECT_LOCATION, value });
 
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case SELECT_LOCATION:
+      return {
+        ...state,
+        setValue: action.value,
+        value: action.value,
+      }
     default:
       return state;
   }
@@ -20,11 +26,8 @@ const reducer = (state, action) => {
 const initialState = {
   people,
   location,
-  columns: [
-    { title: 'Name', field: 'name' },
-    { title: 'Job', field: 'job_title' },
-    { title: 'Birth Year', field:'birth_date', type: 'numeric' },
-  ],
+  value: [],
+  setValue: [],
 };
 
 const store = createStore(

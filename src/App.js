@@ -1,9 +1,13 @@
 import React from 'react';
 import './App.css';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
 import { Route, NavLink, Switch } from 'react-router-dom';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import PeoplePlace from './PeoplePlace';
 import PeopleTable from './PeopleTable';
 import NotFoundPage from './NotFoundPage';
@@ -19,7 +23,10 @@ import NotFoundPage from './NotFoundPage';
               className="page__people"
               activeClassName="ClassActive"
             >
-        people
+              <ListItemIcon>
+              <PermIdentityIcon />
+              </ListItemIcon>
+              <Typography variant="inherit">people</Typography>
             </NavLink>
           </MenuItem>
           <MenuItem>
@@ -28,7 +35,10 @@ import NotFoundPage from './NotFoundPage';
               className="page__people "
               activeClassName="ClassActive"
             >
-                <div className="App__basket__title">location</div>
+                 <ListItemIcon>
+                 <PersonPinCircleIcon />
+              </ListItemIcon>
+                  location
             </NavLink>
           </MenuItem>
         </MenuList>
