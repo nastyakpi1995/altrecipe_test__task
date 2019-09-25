@@ -34,6 +34,7 @@ class PeoplePlace extends React.Component {
            <Typography color="textSecondary" gutterBottom>
           {person.name}
         </Typography>
+        <Divider />
         Job
         <Divider />
            {person.job_title}
@@ -58,6 +59,7 @@ class PeoplePlace extends React.Component {
            <Typography color="textSecondary" gutterBottom>
           {person.name}
         </Typography>
+        <Divider />
           Job
           <Divider />
           {person.job_title}

@@ -8,9 +8,18 @@ const peoplePrepeared = people.map(a => ({
   ...a,
   name: <NavLink to={`/location${a.id}`}>{a.name}</NavLink>,
   location: location.find(loc => (loc.id === a.id)).address, 
-  city: location.find(loc => (loc.id === a.id)).address,
+  city: location.find(loc => (loc.id === a.id)).id,
 }))
-
+let obj = {}
+peoplePrepeared.forEach(element => (
+  obj[element.id] = element.location
+))
+console.log(obj)
+const suggestions = location.map(suggestion => ({
+  value: suggestion.id,
+  label: suggestion.address,
+}));
+console.log(suggestions)
 
 export default function PeopleTable() {
   const [state, setState] = React.useState({
@@ -18,17 +27,15 @@ export default function PeopleTable() {
       { title: 'Name', field: 'name' },
       { title: 'Job', field: 'job_title' },
       { title: 'Birth Year', field: 'birth_date', type: 'numeric' },
-      { title: 'Location', field: 'location' },
-      { title: 'Location', field: 'city' },
       {
-        title: 'Changed Location',
-        field: 'location',
-        lookup: peoplePrepeared.map(n => n.location),
+        title: 'Location',
+        field: 'city',
+        lookup: obj,
       },
     ],
     data: peoplePrepeared,
   });
-console.log(peoplePrepeared)
+  
   return (
     <MaterialTable
       title="People"
